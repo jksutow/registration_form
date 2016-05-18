@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Registration Form</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}" >
+  </head>
+  <body>
+    <h1>Registration Form</h1>
+    <p>Please fill out all of the information below to register.</p>
+    <form action="/submitted" method="post">
+
+      {% with messages = get_flashed_messages(category_filter=['first_name'])%}
+        {% if messages %}
+          {% for msg in messages %}
+            <p class="msg">{{msg}}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      First Name: <input type="text" name="first_name">
+
+      {% with messages = get_flashed_messages(category_filter=['last_name'])%}
+        {% if messages %}
+          {% for msg in messages %}
+            <p class="msg">{{msg}}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      Last Name: <input type="text" name="last_name">
+
+      {% with messages = get_flashed_messages(category_filter=['email'])%}
+        {% if messages %}
+          {% for msg in messages %}
+            <p class="msg">{{msg}}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      Email: <input type="text" name="email">
+
+      {% with messages = get_flashed_messages(category_filter=['password'])%}
+        {% if messages %}
+          {% for msg in messages %}
+            <p class="msg">{{msg}}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      Password (at least 8 characters): <input type="password" name="password">
+      Confirm Password: <input type="password" name="confirm_pw">
+
+      {% with messages = get_flashed_messages(category_filter=['success'])%}
+        {% if messages %}
+          {% for msg in messages %}
+            <p class="success">{{msg}}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <input type="submit" value="Register">
+    </form>
+  </body>
+</html>
